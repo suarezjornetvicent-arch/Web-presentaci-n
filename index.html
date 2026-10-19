@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vicent Jornet · Diseño y desarrollo web a medida</title>
+<meta name="description" content="Webs a medida, rápidas y adaptadas a tu marca. Propuesta de Vicent Jornet Suarez, diseñador y desarrollador web freelance.">
+<script>document.documentElement.className='js'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=DM+Sans:wght@400;500;700&family=Fraunces:wght@600;800&family=Syne:wght@700;800&family=Space+Grotesk:wght@500;700&family=Playfair+Display:wght@600;800&family=Inter:wght@400;500;800&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* ===== Tokens (los cambia el panel «Personalizar») ===== */
+:root{--ink:#111;--mut:#55555f;--c1:#ff5a3c;--c2:#6b8cff;--c3:#ffc933;--c4:#2fd39a;--c5:#ff8fc4;--fh:'Bricolage Grotesque';--fb:'DM Sans';--sc:1}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:calc(100% * var(--sc));scroll-behavior:smooth}
+body{background:#fff;color:var(--ink);font:400 1.08rem/1.65 var(--fb),system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.tab,.big,.mt span,.num{font-family:var(--fh),sans-serif;letter-spacing:-.03em;line-height:1}
+h2{font-size:clamp(2.4rem,8vw,5.6rem);font-weight:800;max-width:14ch;margin-bottom:1.6rem}
+p{max-width:58ch;color:var(--mut)}
+section{max-width:1180px;margin:auto;padding:clamp(4.5rem,11vw,8rem) 1.25rem}
+:focus-visible{outline:3px solid var(--c2);outline-offset:3px;border-radius:6px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.btn{display:inline-block;padding:.95rem 1.7rem;border-radius:999px;background:var(--ink);color:#fff;font:700 1rem var(--fb);text-decoration:none;border:3px solid var(--ink);cursor:pointer;transition:transform .25s,background .25s,color .25s}
+.btn:hover{background:var(--c1);color:var(--ink);transform:translateY(-3px) rotate(-1deg)}
+.btn.o{background:#fff;color:var(--ink)}.btn.o:hover{background:var(--c3)}
+#bar{position:fixed;top:0;left:0;height:5px;width:100%;background:var(--c1);transform:scaleX(0);transform-origin:0 50%;z-index:50}
+.cur{position:fixed;left:0;top:0;width:22px;height:22px;margin:-11px 0 0 -11px;border:2px solid var(--ink);border-radius:50%;pointer-events:none;z-index:9999;display:none;transition:width .25s,height .25s,margin .25s,background .25s}
+.cur.big{width:60px;height:60px;margin:-30px 0 0 -30px;background:#ffc93399}
+/* ===== Revelados ===== */
+.js .rv{opacity:0;transform:translateY(36px);transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}.js .rv.l{transform:translateX(-60px)}.js .rv.l.in{transform:none}
+.ln{display:block;overflow:hidden;padding-bottom:.08em}.ln>span{display:block}
+.js h2 .ln>span{transform:translateY(115%);transition:transform 1.1s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.js h2.in .ln>span{transform:none}
+/* tipografía cinética: cada letra aterriza con un color y se asienta en tinta */
+.k{display:block}.k .w{display:inline-block;white-space:nowrap}
+.k b{display:inline-block;font-weight:inherit;animation:drop .9s cubic-bezier(.2,.9,.3,1.25) both;animation-delay:calc(var(--i)*45ms + var(--b,0s));animation-play-state:paused}
+.k.in b{animation-play-state:running}
+@keyframes drop{0%{transform:translateY(.9em) rotate(14deg) scale(.6);opacity:0;color:var(--lc)}55%{opacity:1;color:var(--lc)}100%{transform:none;opacity:1;color:var(--ink)}}
+/* ===== Hero ===== */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
+.hero .in0{position:relative;z-index:1;max-width:1180px;width:100%;margin:auto;padding:5rem 1.25rem}
+.hero h1{font-size:clamp(2.9rem,11.5vw,9rem);font-weight:800;margin-bottom:1.6rem}
+.sub{font-size:clamp(1.1rem,2.4vw,1.4rem);margin-bottom:2rem}
+.acts{display:flex;flex-wrap:wrap;gap:.9rem}
+.sh{position:absolute;pointer-events:none;translate:calc(var(--px,0)*var(--d)*1px) calc(var(--y,0px) + var(--py,0)*var(--d)*1px)}
+.sh i{display:block;width:100%;height:100%;animation:fl 7s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-22px) rotate(14deg)}}
+@keyframes sp{to{transform:rotate(360deg)}}
+.s1{width:clamp(90px,19vw,240px);aspect-ratio:1;top:10%;right:5%;--d:34}.s1 i{background:var(--c1);border-radius:50%}
+.s2{width:clamp(56px,9vw,120px);aspect-ratio:1;top:64%;right:24%;--d:-22}.s2 i{background:var(--c2);animation:sp 16s linear infinite}
+.s3{width:clamp(70px,12vw,160px);aspect-ratio:1;top:40%;right:3%;--d:18}.s3 i{background:var(--c3);clip-path:polygon(50% 0,100% 100%,0 100%);animation-delay:-2s}
+.s4{width:clamp(80px,13vw,170px);aspect-ratio:2;bottom:9%;right:9%;--d:-30}.s4 i{background:var(--c4);border-radius:200px 200px 0 0;animation-delay:-4s}
+.s5{width:clamp(50px,8vw,100px);aspect-ratio:1;top:8%;right:38%;--d:26}.s5 i{border:12px solid var(--c5);border-radius:50%;animation-delay:-1s}
+.hint{position:absolute;bottom:1.6rem;left:1.25rem;font-size:.9rem;color:var(--mut);display:flex;gap:.7rem;align-items:center;z-index:1}
+.hint i{width:3px;height:44px;background:var(--ink);animation:dr 1.8s infinite}
+@keyframes dr{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+/* ===== Cinta ===== */
+.mq{overflow:hidden;padding:1.1rem 0;border-block:3px solid var(--ink)}
+.mt{display:flex;align-items:center;gap:2rem;width:max-content}
+.mt span{font-size:clamp(2rem,6vw,4.4rem);font-weight:800;white-space:nowrap}
+.mt i{width:.9em;height:.9em;font-size:clamp(2rem,6vw,4.4rem);border-radius:50%;flex:none}
+.mt i:nth-child(8n+2){background:var(--c1)}.mt i:nth-child(8n+4){background:var(--c2);border-radius:0}.mt i:nth-child(8n+6){background:var(--c3);border-radius:50% 50% 0 0}.mt i:nth-child(8n+8){background:var(--c4)}
+/* ===== Quién soy ===== */
+.scrub{font:700 clamp(1.7rem,4.6vw,3.3rem)/1.2 var(--fh),sans-serif;letter-spacing:-.02em;color:var(--ink);max-width:24em}
+.sw{color:#cdcdd3;transition:color .3s,background .3s}.sw.on{color:var(--ink)}
+.scrub mark{background:none;color:inherit}.scrub:not(.s) mark,.scrub mark .sw.on{background:var(--c3)}
+.nums{font:600 clamp(1.3rem,3vw,2rem)/1.5 var(--fb);color:var(--ink);max-width:30em;margin-top:3rem}
+.nums b{font:800 1.6em/1 var(--fh);padding:0 .15em}
+.nums b:nth-of-type(1){background:var(--c1)}.nums b:nth-of-type(2){background:var(--c4)}.nums b:nth-of-type(3){background:var(--c2)}.nums b:nth-of-type(4){background:var(--c5)}
+.u{position:relative;isolation:isolate;white-space:nowrap}
+.u:after{content:"";position:absolute;left:0;right:0;bottom:.04em;height:.35em;background:var(--c3);z-index:-1;transform:scaleX(0);transform-origin:left;transition:transform .9s .3s cubic-bezier(.2,.8,.2,1)}
+.u.in:after{transform:none}
+/* ===== Servicios ===== */
+.big{font-size:clamp(1.9rem,5.6vw,4.2rem);font-weight:700;line-height:1.22;max-width:21em;letter-spacing:-.025em}
+.sv{display:inline-block;cursor:pointer;border-bottom:.07em dashed var(--ink);transition:transform .3s cubic-bezier(.3,1.6,.5,1),background .3s;padding:0 .08em}
+.sv:hover,.sv.on{transform:rotate(-2.5deg) scale(1.05);background:var(--sc)}
+.cap{margin-top:2.2rem;font-size:clamp(1.15rem,2.4vw,1.5rem);color:var(--ink);max-width:36em;min-height:4.8em;display:flex;gap:1rem;align-items:flex-start}
+.cap i{flex:none;width:1.1em;height:1.1em;border-radius:50%;background:var(--sc,var(--c1));margin-top:.28em;animation:pop .5s cubic-bezier(.3,1.8,.5,1)}
+@keyframes pop{from{transform:scale(0)}}
+/* ===== Propuestas ===== */
+.tabs{display:flex;flex-wrap:wrap;gap:.2rem 1.6rem;margin:1rem 0 2rem}
+.tab{font-size:clamp(2rem,7vw,4.6rem);font-weight:800;color:#9b9ba5;cursor:pointer;transition:color .25s,transform .25s}
+.tab:hover{color:var(--ink)}.tab[aria-selected=true]{color:var(--ink);box-shadow:inset 0 -.22em 0 var(--c3)}
+.pl{animation:up .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes up{from{opacity:0;transform:translateY(22px)}}
+.pl .lead{font-size:1.35rem;color:var(--ink);margin-bottom:1rem}
+.pl ul{list-style:none;display:grid;gap:.45rem;margin-bottom:1.4rem;font-size:1.1rem}
+.pl li:before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;background:var(--c4);margin-right:.7rem}
+.pl li:nth-child(2):before{background:var(--c1)}.pl li:nth-child(3):before{background:var(--c2)}.pl li:nth-child(4):before{background:var(--c5)}
+.pl p b{color:var(--ink)}
+/* ===== Ejemplos ===== */
+.pick{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0 1.8rem}
+.chip{border:2px solid var(--ink);background:#fff;color:var(--ink);padding:.5rem 1.1rem;border-radius:999px;font:600 .95rem var(--fb);cursor:pointer;display:inline-flex;gap:.5rem;align-items:center;transition:transform .2s,background .2s}
+.chip:hover{transform:translateY(-2px)}.chip[aria-pressed=true]{background:var(--c3)}
+.chip s{width:.9rem;height:.9rem;border-radius:50%;display:inline-block;margin-right:-.25rem;border:1px solid #0003}
+.fr2{border:3px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:9px 9px 0 var(--ink)}
+.bar2{display:flex;gap:7px;align-items:center;padding:.6rem .9rem;border-bottom:3px solid var(--ink);background:#fff;font-size:.8rem;color:var(--mut)}
+.bar2 i{width:12px;height:12px;border-radius:50%;background:var(--c1)}.bar2 i:nth-child(2){background:var(--c3)}.bar2 i:nth-child(3){background:var(--c4)}.bar2 span{margin-left:.6rem}
+.mkb{background:var(--mb,#fff3d6);color:var(--mf,#2a1500);padding:clamp(1.4rem,5vw,3.2rem);transition:background .5s,color .5s;font-family:var(--mn,'Fraunces'),serif}
+.mkb nav{display:flex;justify-content:space-between;gap:1rem;font-weight:700;margin-bottom:clamp(1.6rem,6vw,3.6rem)}.mkb nav span+span{font-weight:400;opacity:.7;font-size:.9rem}
+.mkb h4{font-size:clamp(2rem,6.4vw,4.4rem);line-height:1;letter-spacing:-.02em;max-width:12ch;margin-bottom:1rem}
+.mkb p{color:inherit;opacity:.85}.mkb .mbt{display:inline-block;margin-top:1.4rem;padding:.8rem 1.5rem;border-radius:999px;background:var(--ma,#ff5a3c);color:var(--mf);font-weight:700;border:3px solid var(--mf);font-family:var(--fb)}
+.note{margin-top:2.2rem}.note .btn{margin-top:1rem}
+/* ===== Pantallas fijadas ===== */
+.dev{max-width:none;padding:0;height:260vh}
+.stick{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.25rem;overflow:hidden}
+.stick h2{max-width:18ch;font-size:clamp(2rem,6vw,4rem)}.stick p{margin:0 auto}
+.devs{position:relative;width:min(900px,94vw);height:clamp(230px,46vw,420px);margin-top:1.6rem}
+.fr{position:absolute;background:#fff;border:3px solid var(--ink);border-radius:14px;overflow:hidden;box-shadow:7px 7px 0 var(--ink)}
+.site{height:100%;padding:8%;display:flex;flex-direction:column;gap:7%}
+.site i{display:block;height:7%;width:40%;border-radius:6px;background:var(--ink)}.site em{flex:1;border-radius:10px;background:var(--c1)}.site s{display:block;height:14%;border-radius:8px;background:var(--c4)}.site s+s{background:var(--c3)}
+.d{left:12%;width:76%;bottom:0;height:88%;transform:scale(calc(.78 + var(--p,0)*.22));z-index:1}
+.t{left:0;width:30%;bottom:0;height:70%;transform:translateX(calc((1 - var(--p,0))*80px));opacity:var(--p,0)}.t em{background:var(--c2)}
+.m{right:2%;width:15%;bottom:0;height:62%;transform:translateX(calc((1 - var(--p,0))*-80px));opacity:var(--p,0);z-index:2}.m em{background:var(--c5)}
+/* ===== Proceso ===== */
+.tl{list-style:none;position:relative;margin-top:2.4rem;padding-left:3.6rem;display:grid;gap:2.6rem;isolation:isolate}
+.tl:before,.tl:after{content:"";position:absolute;left:1.15rem;top:var(--tl-top,1.05rem);height:var(--tl-len,calc(100% - 3.8rem));width:4px;transform:translateX(-50%);background:#e6e6ea;z-index:0}
+.tl:after{background:var(--ink);transform:translateX(-50%) scaleY(var(--t,0));transform-origin:top center}
+.tl li{position:relative;z-index:1}
+.tl h3{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;margin-bottom:.3rem}
+.num{position:absolute;left:-3.6rem;top:-.1rem;width:2.3rem;height:2.3rem;border-radius:50%;background:#fff;border:3px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:1rem;z-index:2;transition:background .4s,transform .4s}
+.tl li.in .num{background:var(--cc);transform:rotate(360deg)}
+.tl li:nth-child(1){--cc:var(--c1)}.tl li:nth-child(2){--cc:var(--c3)}.tl li:nth-child(3){--cc:var(--c4)}.tl li:nth-child(4){--cc:var(--c2)}.tl li:nth-child(5){--cc:var(--c5)}
+/* ===== Contacto ===== */
+.cta h2{max-width:none;font-size:clamp(2.8rem,11vw,8.4rem)}
+.cta-card{margin:2rem 0;padding:clamp(1.8rem,4.5vw,3rem);background:#fff;border:3px solid var(--ink);border-radius:24px;box-shadow:9px 9px 0 var(--ink);display:grid;gap:1.4rem;max-width:760px;position:relative}
+.cta-badge-live{display:inline-flex;align-items:center;gap:.6rem;font-size:.88rem;font-weight:700;color:var(--ink);background:#f4f4f7;padding:.4rem .9rem;border-radius:999px;width:fit-content;border:2px solid var(--ink)}
+.pulse-dot{width:10px;height:10px;border-radius:50%;background:var(--c4);box-shadow:0 0 0 0 rgba(47,211,154,.7);animation:pulseGreen 2s infinite}
+@keyframes pulseGreen{0%{box-shadow:0 0 0 0 rgba(47,211,154,.7)}70%{box-shadow:0 0 0 10px rgba(47,211,154,0)}100%{box-shadow:0 0 0 0 rgba(47,211,154,0)}}
+.cta-desc{font-size:clamp(1.2rem,2.8vw,1.6rem);line-height:1.45;color:var(--ink);font-weight:500;max-width:none}
+.txt-hl{display:inline-block;padding:.1em .45em;border-radius:8px;font-weight:700;transition:transform .25s ease}
+.txt-hl:hover{transform:translateY(-2px) rotate(-1deg)}
+.hl-coral{background:var(--c1);color:#fff}
+.hl-mint{background:var(--c4);color:var(--ink)}
+.cta-mail-wrap{margin:.2rem 0}
+.cta-mail-link{display:inline-flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--ink);font-family:var(--fh),sans-serif;font-size:clamp(1.25rem,3.2vw,1.85rem);font-weight:800;border-bottom:3px dashed var(--ink);padding-bottom:.2rem;transition:color .25s,border-color .25s,transform .25s}
+.cta-mail-link:hover{color:var(--c1);border-color:var(--c1);transform:translateX(4px)}
+.cta-mail-icon{display:inline-grid;place-items:center;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--c3);font-size:1.1rem;border:2px solid var(--ink);transition:transform .3s,background .3s}
+.cta-mail-link:hover .cta-mail-icon{transform:rotate(15deg) scale(1.1);background:var(--c1);color:#fff}
+.cta-punchline{display:flex;align-items:center;gap:.7rem;padding-top:1.1rem;border-top:2px dashed #e6e6ea}
+.cta-rainbow-text{font-family:var(--fh),sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.15;background:linear-gradient(90deg,var(--c1),var(--c3),var(--c4),var(--c2),var(--c5),var(--c1));background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:flowRainbow 6s linear infinite}
+@keyframes flowRainbow{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+.cta-sparkle{font-size:1.8rem;color:var(--c3);animation:twinkle 2s ease-in-out infinite;user-select:none}
+.s-right{color:var(--c4);animation-delay:1s}
+@keyframes twinkle{0%,100%{transform:scale(.8) rotate(0deg);opacity:.6}50%{transform:scale(1.25) rotate(45deg);opacity:1}}
+.cta-story{margin-top:1.2rem;font-size:clamp(1.05rem,2.2vw,1.25rem)}
+footer{padding:2rem 1.25rem 3.5rem;color:var(--mut);font-size:.9rem;max-width:1180px;margin:auto}
+/* ===== Panel personalizar ===== */
+#cz{position:fixed;right:1.5rem;bottom:1.5rem;z-index:80;width:min(380px,calc(100vw - 2rem));max-height:85svh;overflow:auto;background:#fff;border:3px solid var(--ink);border-radius:20px;box-shadow:8px 8px 0 var(--ink);padding:1.3rem;display:grid;gap:1rem;animation:up .4s}
+#cz[hidden]{display:none}
+.cz-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:.3rem;border-bottom:2px solid #f0f0f4}
+.cz-head h3{font-size:1.5rem}
+.cz-close{width:32px;height:32px;border-radius:50%;border:2px solid var(--ink);background:#fff;color:var(--ink);font-size:1.1rem;font-weight:800;display:grid;place-items:center;cursor:pointer;transition:transform .2s,background .2s,color .2s;line-height:1}
+.cz-close:hover{background:var(--c1);color:var(--ink);transform:scale(1.1) rotate(90deg)}
+#cz b{font-size:.95rem}#cz .pick{margin:.2rem 0 0}
+#tt{position:fixed;top:1rem;left:50%;translate:-50% -200%;background:var(--ink);color:#fff;padding:.7rem 1.2rem;border-radius:999px;z-index:9000;transition:translate .5s cubic-bezier(.3,1.5,.5,1);font-size:.95rem;max-width:92vw;text-align:center}
+#tt.on{translate:-50% 0}
+@media(min-width:900px){.hero .in0{padding-right:34%}}
+@media(hover:hover) and (pointer:fine){.cc .cur{display:block}.cc,.cc a,.cc button,.cc .sv,.cc .tab{cursor:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.js .rv,.js h2 .ln>span,.k b{opacity:1;transform:none;color:var(--ink)}.dev{height:auto}.stick{position:static;height:auto;padding:4rem 1.25rem}.devs{--p:1}}
+</style>
+</head>
+<body>
+<div id="bar" aria-hidden="true"></div><div class="cur" aria-hidden="true"></div><div id="tt" role="status"></div>
+<main id="m">
+
+<header class="hero" id="inicio">
+  <div class="sh s1" aria-hidden="true"><i></i></div><div class="sh s2" aria-hidden="true"><i></i></div><div class="sh s3" aria-hidden="true"><i></i></div><div class="sh s4" aria-hidden="true"><i></i></div><div class="sh s5" aria-hidden="true"><i></i></div>
+  <div class="in0">
+    <h1><span class="k" style="--b:.1s">Una web</span><span class="k" style="--b:.45s">a la altura</span><span class="k" id="l3" style="--b:.8s">de tu negocio</span></h1>
+    <p class="sub rv" style="--d:1.3s">Soy Vicent Jornet. Diseño y programo webs a medida, rápidas y pensadas para que tus clientes te encuentren, confíen en ti y te escriban.</p>
+    <div class="acts rv" style="--d:1.5s"><a class="btn" href="#propuestas">Ver propuestas</a><button class="btn o" type="button" data-open>Personalizar esta web</button></div>
+  </div>
+  <div class="hint" aria-hidden="true"><i></i>Desliza</div>
+</header>
+
+<div class="mq" aria-hidden="true"><div class="mt" id="mt"><span>Webs que venden</span><i></i><span>Diseño a medida</span><i></i><span>Rápidas en cualquier móvil</span><i></i><span>Adaptadas a ti</span><i></i></div></div>
+
+<section id="quien">
+  <h2><span class="ln"><span>Contigo,</span></span><span class="ln"><span style="--d:.12s">sin intermediarios</span></span></h2>
+  <p class="scrub" id="sc">Soy Vicent Jornet, <mark>diseñador y desarrollador web</mark> freelance. Estudio Desarrollo de Aplicaciones Multiplataforma en <mark>La Florida, Alzira</mark>, y cada día aprendo tecnología nueva para aplicarla a negocios reales. Hablas <mark>conmigo directamente</mark>, me adapto a tu forma de trabajar, mis precios son competitivos y <mark>respondo rápido</mark>.</p>
+  <p class="nums rv"><b data-to="1">0</b> persona a cargo de todo, <b data-to="100">0</b> % de diseño a medida, <b data-to="24">0</b> h para responderte y <b data-to="0">0</b> plantillas genéricas.</p>
+</section>
+
+<section id="servicios">
+  <h2><span class="ln"><span>Lo que puedo</span></span><span class="ln"><span style="--d:.12s">hacer por ti</span></span></h2>
+  <p class="big rv">Creo <span class="sv" role="button" tabindex="0" style="--sc:var(--c1)" data-d="Tu empresa con una imagen profesional que transmite confianza y trabaja para ti las 24 horas.">webs corporativas</span>, <span class="sv" role="button" tabindex="0" style="--sc:var(--c3)" data-d="Una página con un único objetivo: que quien llega termine contactando o comprando.">landing pages</span> y <span class="sv" role="button" tabindex="0" style="--sc:var(--c4)" data-d="Vende tus productos desde cualquier lugar, con una compra fácil y segura para tus clientes.">tiendas online</span>. Renuevo <span class="sv" role="button" tabindex="0" style="--sc:var(--c5)" data-d="¿Tu web se ve antigua o no genera clientes? Le doy una segunda vida moderna y clara.">webs antiguas</span>, programo <span class="sv" role="button" tabindex="0" style="--sc:var(--c2)" data-d="Herramientas propias para automatizar tareas y ahorrarte horas de trabajo.">aplicaciones a medida</span> y me ocupo del <span class="sv" role="button" tabindex="0" style="--sc:var(--c3)" data-d="Una web rápida y bien estructurada, preparada para aparecer en Google y no perder visitas por esperas.">SEO y la velocidad</span>.</p>
+  <p class="cap" id="cap" aria-live="polite"><i></i><span id="capt">Toca una palabra subrayada y te cuento qué puedo hacer por ti.</span></p>
+</section>
+
+<section id="propuestas">
+  <h2><span class="ln"><span>Tres formas</span></span><span class="ln"><span style="--d:.12s">de empezar</span></span></h2>
+  <div class="tabs" role="tablist" aria-label="Propuestas"><span class="tab" role="tab" tabindex="0" aria-selected="true">Esencial</span><span class="tab" role="tab" tabindex="0" aria-selected="false">Profesional</span><span class="tab" role="tab" tabindex="0" aria-selected="false">A medida</span></div>
+  <div class="pl" role="tabpanel"><p class="lead">Tu presencia online, clara y bien hecha.</p><ul><li>Web de 1 a 3 secciones</li><li>Diseño adaptado a tu marca</li><li>Perfecta en el móvil</li><li>Formulario de contacto</li></ul><p><b>Ideal para</b> autónomos y negocios que arrancan. <b>Plazo:</b> 1 a 2 semanas. <b>Precio:</b> presupuesto personalizado.</p></div>
+  <div class="pl" role="tabpanel" hidden><p class="lead">Una web completa que vende por ti.</p><ul><li>Hasta 8 páginas</li><li>Animaciones y diseño exclusivo</li><li>SEO básico y máxima velocidad</li><li>Blog o catálogo opcional</li></ul><p><b>Ideal para</b> pymes y empresas que quieren crecer. <b>Plazo:</b> 3 a 4 semanas. <b>Precio:</b> presupuesto personalizado.</p></div>
+  <div class="pl" role="tabpanel" hidden><p class="lead">Cuando necesitas algo más que una web.</p><ul><li>Tienda online o reservas</li><li>Panel de gestión propio</li><li>Aplicaciones y automatizaciones</li><li>Conexión con tus herramientas</li></ul><p><b>Ideal para</b> proyectos con necesidades concretas. <b>Plazo:</b> según el proyecto. <b>Precio:</b> presupuesto personalizado.</p></div>
+</section>
+
+<section id="ejemplos">
+  <h2><span class="ln"><span>Así podría ser</span></span><span class="ln"><span style="--d:.12s">tu web</span></span></h2>
+  <p class="rv">Elige un tipo de negocio y mira cómo cambia todo: colores, tipografía y mensaje. Cada web parte de la identidad de su empresa.</p>
+  <div class="pick" id="sec" role="group" aria-label="Tipo de negocio"></div>
+  <div class="fr2 rv"><div class="bar2" aria-hidden="true"><i></i><i></i><i></i><span id="url">casalola.es</span></div>
+    <div class="mkb" id="mkb"><nav><span id="mn">Casa Lola</span><span>Inicio · Servicios · Contacto</span></nav><h4 id="mh">Cocina de casa, mesa para ti.</h4><p id="mp">Reserva en dos toques y descubre el menú del día.</p><span class="mbt" id="mbt">Reservar mesa</span></div></div>
+  <div class="note"><p>Y esta misma página es la prueba: puedes personalizar sus tipografías y colores en cualquier momento para ver cómo se adapta a tu marca.</p></div>
+</section>
+
+<section class="dev" id="pantallas" aria-labelledby="pt">
+  <div class="stick"><h2 id="pt">Se ve perfecta en cualquier pantalla</h2><p>Móvil, tablet u ordenador: tus clientes tendrán la misma buena experiencia, vengan desde donde vengan.</p>
+    <div class="devs" id="devs" aria-hidden="true"><div class="fr t"><div class="site"><i></i><em></em><s></s></div></div><div class="fr d"><div class="site"><i></i><em></em><s></s><s></s></div></div><div class="fr m"><div class="site"><i></i><em></em><s></s></div></div></div></div>
+</section>
+
+<section id="proceso">
+  <h2><span class="ln"><span>Así trabajamos</span></span><span class="ln"><span style="--d:.12s">juntos</span></span></h2>
+  <ol class="tl" id="tl">
+    <li class="rv l"><span class="num">1</span><h3>Reunión inicial</h3><p>Me cuentas tu negocio y tus objetivos. Sin compromiso.</p></li>
+    <li class="rv l"><span class="num">2</span><h3>Propuesta de diseño</h3><p>Te enseño cómo podría verse tu web antes de programar nada.</p></li>
+    <li class="rv l"><span class="num">3</span><h3>Desarrollo</h3><p>Construyo tu web cuidando el detalle, la velocidad y el móvil.</p></li>
+    <li class="rv l"><span class="num">4</span><h3>Revisión</h3><p>Ajustamos juntos todo lo que quieras hasta que estés conforme.</p></li>
+    <li class="rv l"><span class="num">5</span><h3>Lanzamiento y soporte</h3><p>Publicamos tu web y sigo a tu lado para dudas y mejoras.</p></li>
+  </ol>
+</section>
+
+<section class="cta" id="contacto">
+  <h2><span class="k" style="--b:0s">Hablemos de</span><span class="k" style="--b:.35s">tu proyecto</span></h2>
+  <div class="cta-card rv">
+    <div class="cta-badge-live">
+      <span class="pulse-dot"></span>
+      <span>Disponible para nuevos proyectos</span>
+    </div>
+    <p class="cta-desc">
+      Cuéntame qué necesitas y te respondo con una <span class="txt-hl hl-coral">propuesta clara</span> y <span class="txt-hl hl-mint">sin compromiso</span>. Escríbeme directamente a mi correo:
+    </p>
+    <div class="cta-mail-wrap">
+      <a class="cta-mail-link" id="cta-mail" href="mailto:tu@email.com">
+        <span class="cta-mail-icon">✉</span>
+        <span class="cta-mail-addr mail-text">tu@email.com</span>
+      </a>
+    </div>
+    <div class="cta-punchline">
+      <span class="cta-sparkle s-left" aria-hidden="true">✦</span>
+      <span class="cta-rainbow-text">¡Juntos lograremos que pase!</span>
+      <span class="cta-sparkle s-right" aria-hidden="true">✦</span>
+    </div>
+  </div>
+  <p class="rv cta-story"><b style="color:var(--ink)">Tu negocio ya tiene una historia. Yo me encargo de que la web la cuente bien.</b></p>
+</section>
+</main>
+<footer>© <span id="yr"></span> Vicent Jornet Suarez · Diseño y desarrollo web</footer>
+
+<aside id="cz" hidden aria-label="Personalizar esta web">
+  <div class="cz-head">
+    <h3>Hazla tuya</h3>
+    <button type="button" class="cz-close" id="cz-close" aria-label="Cerrar panel">✕</button>
+  </div>
+  <b>Tipografía</b><div class="pick" id="cf"></div>
+  <b>Colores</b><div class="pick" id="cp"></div>
+  <button class="btn o" type="button" id="rs">Restablecer</button>
+</aside>
+
+<script>
+/* ===== CONFIGURACIÓN: cambia aquí tus datos de contacto ===== */
+const CONFIG={email:'tu@email.com',tel:'+34600000000'};
+
+const $=(s,e=document)=>e.querySelector(s),$$=(s,e=document)=>[...e.querySelectorAll(s)],H=document.documentElement;
+const R=matchMedia('(prefers-reduced-motion: reduce)').matches,clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const act=(el,f)=>{el.onclick=f;el.onkeydown=e=>{if((e.key==='Enter'||e.key===' ')&&!el.isContentEditable){e.preventDefault();f()}}};
+const toast=t=>{const e=$('#tt');e.textContent=t;e.classList.add('on');clearTimeout(toast.i);toast.i=setTimeout(()=>e.classList.remove('on'),3200)};
+
+/* Contacto */
+const ctaMail=$('#cta-mail');
+if(ctaMail){
+  ctaMail.href='mailto:'+CONFIG.email+'?subject='+encodeURIComponent('Propuesta web')+'&body='+encodeURIComponent('Hola Vicent, me gustaría pedirte una propuesta para mi proyecto web...');
+  const mt=$('.mail-text',ctaMail);
+  if(mt)mt.textContent=CONFIG.email;
+}
+$('#yr').textContent=new Date().getFullYear();
+
+/* ?empresa=Nombre (textContent evita inyección de HTML) */
+const emp=(new URLSearchParams(location.search).get('empresa')||'').trim().slice(0,40);
+if(emp){$('#l3').textContent='de '+emp;document.title='Una web a la altura de '+emp+' · Vicent Jornet'}
+
+/* Tipografía cinética */
+const kin=el=>{const t=el.dataset.t=el.dataset.t||el.textContent.trim();let i=0;
+ el.innerHTML='<span class="sr">'+t.replace(/</g,'&lt;')+'</span>'+t.split(' ').map(w=>'<span class="w" aria-hidden="true">'+[...w].map(c=>'<b style="--i:'+i+';--lc:var(--c'+(i++%5+1)+')">'+c.replace(/</g,'&lt;')+'</b>').join('')+'</span>').join(' ')};
+$$('.k').forEach(kin);
+
+/* Párrafo que se «rellena» al hacer scroll */
+const sc=$('#sc');let words=[];sc.dataset.h=sc.innerHTML;
+function scrub(){words=[];const walk=n=>[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(s=>{if(!s.trim())f.append(s);else{const x=document.createElement('span');x.className='sw'+(R?' on':'');x.textContent=s;f.append(x);words.push(x)}});c.replaceWith(f)}else walk(c)});walk(sc);sc.classList.add('s')}
+scrub();
+
+/* Revelados + contadores */
+const count=el=>{const to=+el.dataset.to;if(R||!to){el.textContent=to;return}let t0;const f=t=>{t0=t0||t;const k=clamp((t-t0)/1500);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');$$('[data-to]',e.target).forEach(count);io.unobserve(e.target)}),{threshold:.2,rootMargin:'0px 0px -6% 0px'});
+$$('.rv,h2,.k:not(.hero .k)').forEach(e=>io.observe(e));
+requestAnimationFrame(()=>setTimeout(()=>$$('.hero .k,.hero .rv').forEach(e=>e.classList.add('in')),100));
+$$('#sc,.u').forEach(()=>0);
+
+/* Servicios */
+const cap=$('#cap'),capt=$('#capt');let cur=null;
+$$('.sv').forEach(s=>act(s,()=>{$$('.sv').forEach(x=>x.classList.remove('on'));s.classList.add('on');cur=s;cap.style.setProperty('--sc',getComputedStyle(s).getPropertyValue('--sc'));const i=cap.firstElementChild,n=i.cloneNode();i.replaceWith(n);capt.textContent=s.dataset.d}));
+capt.addEventListener('input',()=>{if(cur)cur.dataset.d=capt.textContent});
+
+/* Propuestas */
+const tabs=$$('.tab'),pls=$$('.pl');
+tabs.forEach((t,i)=>act(t,()=>{tabs.forEach((x,j)=>x.setAttribute('aria-selected',i===j));pls.forEach((p,j)=>p.hidden=i!==j)}));
+
+/* Ejemplos de webs por sector */
+const SEC=[['Restaurante','Casa Lola','casalola.es','Cocina de casa, mesa para ti.','Reserva en dos toques y descubre el menú del día.','Reservar mesa','#fff3d6','#2a1500','#ff5a3c','Fraunces'],
+['Clínica','Clínica Mar','clinicamar.es','Cuidamos de ti, sin esperas.','Pide cita online cuando mejor te venga.','Pedir cita','#e3f4ff','#08233b','#6b8cff','Manrope'],
+['Tienda','Taller Verde','tallerverde.es','Plantas que alegran tu casa.','Compra online y recíbelas donde quieras.','Ver tienda','#e4f7ec','#0e2a1b','#2fd39a','Syne'],
+['Abogados','Vidal & Co.','vidalco.es','Tus derechos, bien defendidos.','Primera consulta sin compromiso.','Pedir consulta','#ffe9f3','#3a1026','#ff8fc4','Playfair Display'],
+['Estudio','Estudio Norte','estudionorte.es','Espacios que se sienten tuyos.','Mira nuestros proyectos y cuéntanos el tuyo.','Ver proyectos','#ffffff','#111111','#ffc933','Bricolage Grotesque']];
+const mkb=$('#mkb');
+function chips(box,list,fn,sw){list.forEach((it,i)=>{const b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('aria-pressed',i===0);
+ if(sw)b.innerHTML=it[1].map(c=>'<s style="background:'+c+'"></s>').join('');
+ if(box.id==='cf')b.style.fontFamily="'"+it[1]+"'";b.append(it[0]);
+ b.onclick=()=>{$$('.chip',box).forEach(c=>c.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');fn(it)};box.append(b)})}
+chips($('#sec'),SEC,s=>{$('#mn').textContent=s[1];$('#url').textContent=s[2];$('#mh').textContent=s[3];$('#mp').textContent=s[4];$('#mbt').textContent=s[5];
+ mkb.style.setProperty('--mb',s[6]);mkb.style.setProperty('--mf',s[7]);mkb.style.setProperty('--ma',s[8]);mkb.style.setProperty('--mn',"'"+s[9]+"'")});
+
+/* Panel «Personalizar»: tipografías y colores */
+const FONTS=[['Bricolage + DM Sans','Bricolage Grotesque','DM Sans'],['Fraunces + Inter','Fraunces','Inter'],['Syne + DM Sans','Syne','DM Sans'],['Space Grotesk + Manrope','Space Grotesk','Manrope'],['Playfair + Inter','Playfair Display','Inter'],['Inter + Inter','Inter','Inter']];
+const PALS=[['Vivo',['#ff5a3c','#6b8cff','#ffc933','#2fd39a','#ff8fc4']],['Mediterráneo',['#2fa8e8','#ffb703','#ff7a45','#7ad7d0','#a9d6f5']],['Tierra',['#e07a4f','#e9b44c','#9bbf6a','#c98f6b','#7fb0b8']],['Fresa',['#ff4f79','#ff9fb5','#b794f6','#ffc247','#6fd1ff']],['Neón suave',['#c6f432','#ff6ad5','#6df0ff','#ffd23f','#b28dff']]];
+chips($('#cf'),FONTS.map(f=>[f[0],f[1],f[2]]),f=>{H.style.setProperty('--fh',"'"+f[1]+"'");H.style.setProperty('--fb',"'"+f[2]+"'")});
+chips($('#cp'),PALS,p=>p[1].forEach((c,i)=>H.style.setProperty('--c'+(i+1),c)),true);
+
+const cz=$('#cz');
+const heroOpenBtn=$('[data-open]');
+function panel(o){
+  cz.hidden=!o;
+  if(heroOpenBtn)heroOpenBtn.setAttribute('aria-expanded',o);
+  if(o){
+    const firstChip=$('#cf .chip',cz);
+    if(firstChip)firstChip.focus();
+  }
+}
+if(heroOpenBtn)heroOpenBtn.addEventListener('click',()=>panel(cz.hidden));
+const czClose=$('#cz-close');
+if(czClose)czClose.addEventListener('click',()=>panel(false));
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&!cz.hidden){
+    panel(false);
+    if(heroOpenBtn)heroOpenBtn.focus();
+  }
+});
+document.addEventListener('pointerdown',e=>{
+  if(!cz.hidden&&!cz.contains(e.target)&&!e.target.closest('[data-open]')){
+    panel(false);
+  }
+});
+$('#rs').onclick=()=>{location.reload()};
+
+/* Cursor, scroll, parallax, cinta, pantallas y línea de tiempo */
+const bar=$('#bar'),dev=$('#pantallas'),devs=$('#devs'),tl=$('#tl'),hero=$('.hero'),shs=$$('.sh'),curEl=$('.cur'),mt=$('#mt');
+const cc=matchMedia('(hover:hover) and (pointer:fine)').matches&&!R;if(cc)H.classList.add('cc');
+let x=0,y=0,cx=0,cy=0,dirty=1,lastY=scrollY,v=0;
+addEventListener('pointermove',e=>{x=e.clientX;y=e.clientY;if(!R){hero.style.setProperty('--px',(x/innerWidth-.5)*2);hero.style.setProperty('--py',(y/innerHeight-.5)*2)}});
+document.addEventListener('pointerover',e=>curEl.classList.toggle('big',!!e.target.closest('a,button,.sv,.tab,.chip')));
+mt.innerHTML+=mt.innerHTML;
+const an=R?null:mt.animate([{transform:'none'},{transform:'translateX(-50%)'}],{duration:42000,iterations:Infinity});
+function upd(){dirty=0;const h=innerHeight,s=scrollY;bar.style.transform='scaleX('+clamp(s/(H.scrollHeight-h))+')';
+ if(!R)shs.forEach((e,i)=>e.style.setProperty('--y',s*[.25,-.15,.2,-.3,.1][i]+'px'));
+ let r=dev.getBoundingClientRect();devs.style.setProperty('--p',R?1:clamp(-r.top/(r.height-h)*1.6).toFixed(3));
+ const nums=$$('.tl .num');
+ if(nums.length>=2){
+   const tlRect=tl.getBoundingClientRect();
+   const firstRect=nums[0].getBoundingClientRect();
+   const lastRect=nums[nums.length-1].getBoundingClientRect();
+   const topCenter=firstRect.top+firstRect.height/2-tlRect.top;
+   const bottomCenter=lastRect.top+lastRect.height/2-tlRect.top;
+   const lineLen=bottomCenter-topCenter;
+   tl.style.setProperty('--tl-top',topCenter.toFixed(1)+'px');
+   tl.style.setProperty('--tl-len',lineLen.toFixed(1)+'px');
+   const centerFirst=firstRect.top+firstRect.height/2;
+   const centerLast=lastRect.top+lastRect.height/2;
+   const span=centerLast-centerFirst;
+   const triggerY=h*0.65;
+   const p=span>0?clamp((triggerY-centerFirst)/span):0;
+   tl.style.setProperty('--t',R?1:p.toFixed(3));
+ }
+ if(!R&&words.length){r=sc.getBoundingClientRect();const n=Math.round(clamp((h*.85-r.top)/(r.height+h*.3))*words.length);words.forEach((w,i)=>w.classList.toggle('on',i<n))}}
+addEventListener('scroll',()=>dirty=1,{passive:true});addEventListener('resize',()=>dirty=1);
+(function loop(){cx+=(x-cx)*.2;cy+=(y-cy)*.2;if(cc)curEl.style.transform='translate('+cx+'px,'+cy+'px)';
+ const d=Math.abs(scrollY-lastY);lastY=scrollY;v+=(d-v)*.1;if(an)an.playbackRate=1+Math.min(v*.2,9);
+ if(dirty)upd();requestAnimationFrame(loop)})();
+</script>
+</body>
+</html>
