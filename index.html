@@ -98,10 +98,51 @@ section{max-width:1180px;margin:auto;padding:clamp(4.5rem,11vw,8rem) 1.25rem}
 .fr2{border:3px solid var(--ink);border-radius:18px;overflow:hidden;box-shadow:9px 9px 0 var(--ink)}
 .bar2{display:flex;gap:7px;align-items:center;padding:.6rem .9rem;border-bottom:3px solid var(--ink);background:#fff;font-size:.8rem;color:var(--mut)}
 .bar2 i{width:12px;height:12px;border-radius:50%;background:var(--c1)}.bar2 i:nth-child(2){background:var(--c3)}.bar2 i:nth-child(3){background:var(--c4)}.bar2 span{margin-left:.6rem}
-.mkb{background:var(--mb,#fff3d6);color:var(--mf,#2a1500);padding:clamp(1.4rem,5vw,3.2rem);transition:background .5s,color .5s;font-family:var(--mn,'Fraunces'),serif}
-.mkb nav{display:flex;justify-content:space-between;gap:1rem;font-weight:700;margin-bottom:clamp(1.6rem,6vw,3.6rem)}.mkb nav span+span{font-weight:400;opacity:.7;font-size:.9rem}
-.mkb h4{font-size:clamp(2rem,6.4vw,4.4rem);line-height:1;letter-spacing:-.02em;max-width:12ch;margin-bottom:1rem}
-.mkb p{color:inherit;opacity:.85}.mkb .mbt{display:inline-block;margin-top:1.4rem;padding:.8rem 1.5rem;border-radius:999px;background:var(--ma,#ff5a3c);color:var(--mf);font-weight:700;border:3px solid var(--mf);font-family:var(--fb)}
+.js .fr2.rv{transition:opacity .9s,transform .9s cubic-bezier(.2,.8,.2,1),max-width .6s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.fr2.mv{max-width:390px;margin-inline:auto}
+.mkb{--bd:color-mix(in srgb,var(--mf) 16%,transparent);background:var(--mb,#fff3d6);color:var(--mf,#2a1500);font-family:var(--mn,'Fraunces'),serif;transition:background .5s,color .5s;container-type:inline-size;min-height:540px}
+.mkb p{color:inherit;opacity:.82;max-width:46ch;font:400 1rem/1.55 var(--fb),sans-serif}
+.mk-nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem clamp(1.1rem,4vw,2.6rem);border-bottom:2px solid var(--bd)}
+.mk-logo{display:flex;align-items:center;gap:.55rem;font-weight:800;font-size:1.2rem}.mk-logo i{width:1em;height:1em;border-radius:50%;background:var(--ma)}
+.mk-links{display:flex;gap:1.3rem;font:500 .88rem var(--fb),sans-serif;opacity:.75;margin-left:auto;margin-right:1rem}
+.mk-pill,.mk-btn{display:inline-block;padding:.55rem 1.1rem;border-radius:999px;background:var(--ma);color:var(--mt);border:2px solid var(--mt);font:700 .88rem var(--fb),sans-serif;white-space:nowrap}
+.mk-btn{padding:.75rem 1.4rem;font-size:.95rem}button.mk-btn{cursor:pointer;transition:transform .2s}button.mk-btn:hover{transform:translateY(-2px) rotate(-1deg)}
+.mk-ghost{display:inline-block;padding:.75rem 1.4rem;border-radius:999px;border:2px solid currentColor;font:700 .95rem var(--fb),sans-serif}
+.mk-main{padding:clamp(1.4rem,4.5vw,2.8rem) clamp(1.1rem,4vw,2.6rem) clamp(1.6rem,5vw,3rem);display:grid;gap:clamp(1.2rem,3vw,2rem);animation:up .6s cubic-bezier(.2,.8,.2,1)}
+.mk-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:2rem;align-items:center}
+.mk-k{display:inline-block;font:700 .75rem var(--fb),sans-serif;letter-spacing:.05em;text-transform:uppercase;padding:.35rem .8rem;border-radius:999px;border:2px solid var(--bd);margin-bottom:1rem}
+.mk-h{font-size:clamp(2rem,6vw,3.8rem);line-height:1;letter-spacing:-.02em;margin-bottom:1rem;max-width:12ch;font-weight:800}
+.mk-row{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.3rem;align-items:center}.mk-row.sp{justify-content:space-between;margin:0}
+.mk-card{background:var(--ms);border:2px solid var(--bd);border-radius:18px;padding:1.2rem}
+.mk-card p{margin-top:.3rem;font-size:.92rem}.mk-t{display:block;font-size:1.2rem;margin-bottom:.6rem}
+.mk-two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.mk-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.mk-li{list-style:none;display:grid;gap:.55rem;font:500 .98rem var(--fb),sans-serif}.mk-li li{display:flex;justify-content:space-between;gap:1rem;padding-bottom:.55rem;border-bottom:1px dashed var(--bd)}.mk-li em{font-style:normal;opacity:.6;font-size:.85rem}
+.mkb .mk-price{font:800 1.7rem var(--mn),serif;margin-top:.9rem;opacity:1}.mk-price small{font:500 .82rem var(--fb),sans-serif;opacity:.65}
+.mk-slots{display:flex;flex-wrap:wrap;gap:.5rem;margin:.4rem 0 .8rem}
+.mk-slot{font:700 .9rem var(--fb),sans-serif;padding:.5rem .9rem;border-radius:10px;border:2px solid var(--mf);background:transparent;color:inherit;cursor:pointer;transition:transform .2s,background .2s}
+.mk-slot:hover{transform:translateY(-2px)}.mk-slot[aria-pressed=true]{background:var(--ma);color:var(--mt);border-color:var(--mt)}
+.mk-dot{display:block;width:2.2rem;height:2.2rem;border-radius:12px;margin-bottom:.8rem}
+.mk-art{justify-self:center;width:100%;max-width:290px;aspect-ratio:1;position:relative}
+.plate i{position:absolute;border-radius:50%}.plate i:nth-child(1){inset:0;background:var(--ma)}.plate i:nth-child(2){inset:13%;background:var(--ms)}
+.plate i:nth-child(3){left:30%;top:34%;width:24%;height:24%;background:#2f9e6b}.plate i:nth-child(4){left:50%;top:44%;width:26%;height:26%;background:#e0623a}
+.mk-art.cal{display:grid;grid-template-columns:repeat(4,1fr);gap:.55rem;align-content:center;padding:1.1rem;background:var(--ms);border:2px solid var(--mf);border-radius:22px;box-shadow:6px 6px 0 var(--mf);aspect-ratio:auto}
+.cal i{aspect-ratio:1;border-radius:9px;background:var(--bd)}.cal i.a{background:var(--ma);animation:pop .6s .4s both cubic-bezier(.3,1.8,.5,1)}
+.mk-art.arch{aspect-ratio:4/5;max-width:230px;background:var(--ma);border-radius:999px 999px 18px 18px;display:grid;place-items:center;color:var(--mt);font:800 clamp(2.4rem,8vw,4rem) var(--mn),serif;letter-spacing:-.03em}
+.mk-plant{position:relative;aspect-ratio:1;border-radius:14px;background:var(--bg);overflow:hidden}
+.mk-plant:before{content:"";position:absolute;left:33%;right:33%;bottom:8%;height:28%;background:var(--pot);clip-path:polygon(0 0,100% 0,84% 100%,16% 100%)}
+.mk-plant i{position:absolute;left:39%;bottom:34%;width:22%;height:46%;background:var(--lf);border-radius:100% 0;transform-origin:50% 100%;transform:rotate(var(--r,0deg));transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.mk-plant i:nth-child(1){--r:-38deg}.mk-plant i:nth-child(2){height:58%}.mk-plant i:nth-child(3){--r:38deg}
+.mk-prod:hover .mk-plant i:nth-child(1){--r:-54deg}.mk-prod:hover .mk-plant i:nth-child(3){--r:54deg}
+.mk-prod .mk-t{margin:.8rem 0 .6rem}.mk-pr{font:800 1.3rem var(--mn),serif}
+.mk-stats div{display:grid;gap:.15rem}.mk-stats b{font:800 clamp(1.8rem,5vw,2.8rem) var(--mn),serif;color:var(--ma);line-height:1}.mk-stats span{font:500 .85rem var(--fb),sans-serif;opacity:.75}
+.mk-tiles{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:minmax(120px,1fr);gap:.8rem}
+.mk-tile{position:relative;overflow:hidden;border-radius:14px;background:var(--tc);color:#111;display:flex;align-items:flex-end;padding:.9rem;font:800 1rem var(--mn),sans-serif;transition:transform .3s}
+.mk-tile:hover{transform:scale(.97) rotate(-.6deg)}.mk-tile span{position:relative}.mk-tile small{display:block;font:500 .78rem var(--fb),sans-serif;opacity:.7}
+.mk-tile:before{content:"";position:absolute;right:-8%;top:-10%;width:55%;aspect-ratio:1;background:#fff8;border-radius:50%;transition:transform .5s}
+.mk-tile.t1:before{border-radius:12%;rotate:20deg}.mk-tile.t2:before{border-radius:0;clip-path:polygon(50% 0,100% 100%,0 100%)}
+.mk-tile.t3:before{border-radius:200px 200px 0 0;aspect-ratio:2;width:26%;top:auto;bottom:0;right:8%}.mk-tile:hover:before{transform:scale(1.2)}
+.mk-tile.t0{grid-column:span 2;grid-row:span 2}.mk-tile.t3{grid-column:1/-1}
+@container (max-width:640px){.mk-hero,.mk-two,.mk-grid3{grid-template-columns:1fr}.mk-links{display:none}.mk-art{max-width:200px}.mk-tiles{grid-template-columns:1fr 1fr}.mk-tile.t0,.mk-tile.t3{grid-column:span 2;grid-row:auto}}
 .note{margin-top:2.2rem}.note .btn{margin-top:1rem}
 /* ===== Pantallas fijadas ===== */
 .dev{max-width:none;padding:0;height:260vh}
@@ -120,8 +161,9 @@ section{max-width:1180px;margin:auto;padding:clamp(4.5rem,11vw,8rem) 1.25rem}
 .tl:after{background:var(--ink);transform:translateX(-50%) scaleY(var(--t,0));transform-origin:top center}
 .tl li{position:relative;z-index:1}
 .tl h3{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;margin-bottom:.3rem}
-.num{position:absolute;left:-3.6rem;top:-.1rem;width:2.3rem;height:2.3rem;border-radius:50%;background:#fff;border:3px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:1rem;z-index:2;transition:background .4s,transform .4s}
+.num{position:absolute;left:-3.6rem;top:-.1rem;width:2.3rem;height:2.3rem;border-radius:50%;background:#fff;border:3px solid var(--ink);display:grid;place-items:center;font-weight:800;font-size:1rem;z-index:2;transition:background .4s,transform .4s,box-shadow .5s}
 .tl li.in .num{background:var(--cc);transform:rotate(360deg)}
+.tl li.done .num{box-shadow:0 0 0 6px color-mix(in srgb,var(--cc) 45%,transparent),0 0 18px 4px var(--cc)}
 .tl li:nth-child(1){--cc:var(--c1)}.tl li:nth-child(2){--cc:var(--c3)}.tl li:nth-child(3){--cc:var(--c4)}.tl li:nth-child(4){--cc:var(--c2)}.tl li:nth-child(5){--cc:var(--c5)}
 /* ===== Contacto ===== */
 .cta h2{max-width:none;font-size:clamp(2.8rem,11vw,8.4rem)}
@@ -200,10 +242,11 @@ footer{padding:2rem 1.25rem 3.5rem;color:var(--mut);font-size:.9rem;max-width:11
 
 <section id="ejemplos">
   <h2><span class="ln"><span>Así podría ser</span></span><span class="ln"><span style="--d:.12s">tu web</span></span></h2>
-  <p class="rv">Elige un tipo de negocio y mira cómo cambia todo: colores, tipografía y mensaje. Cada web parte de la identidad de su empresa.</p>
+  <p class="rv">Elige un tipo de negocio y mira cómo cambia todo: estructura, colores, tipografía y mensaje. Y es interactivo: prueba a elegir una hora, añadir una planta al carrito o ver la web en móvil.</p>
   <div class="pick" id="sec" role="group" aria-label="Tipo de negocio"></div>
+  <div class="pick" style="margin-top:-.8rem"><button class="chip" type="button" id="mv" aria-pressed="false">Ver en móvil</button></div>
   <div class="fr2 rv"><div class="bar2" aria-hidden="true"><i></i><i></i><i></i><span id="url">casalola.es</span></div>
-    <div class="mkb" id="mkb"><nav><span id="mn">Casa Lola</span><span>Inicio · Servicios · Contacto</span></nav><h4 id="mh">Cocina de casa, mesa para ti.</h4><p id="mp">Reserva en dos toques y descubre el menú del día.</p><span class="mbt" id="mbt">Reservar mesa</span></div></div>
+    <div class="mkb" id="mkb"></div></div>
   <div class="note"><p>Y esta misma página es la prueba: puedes personalizar sus tipografías y colores en cualquier momento para ver cómo se adapta a tu marca.</p></div>
 </section>
 
@@ -309,18 +352,46 @@ const tabs=$$('.tab'),pls=$$('.pl');
 tabs.forEach((t,i)=>act(t,()=>{tabs.forEach((x,j)=>x.setAttribute('aria-selected',i===j));pls.forEach((p,j)=>p.hidden=i!==j)}));
 
 /* Ejemplos de webs por sector */
-const SEC=[['Restaurante','Casa Lola','casalola.es','Cocina de casa, mesa para ti.','Reserva en dos toques y descubre el menú del día.','Reservar mesa','#fff3d6','#2a1500','#ff5a3c','Fraunces'],
-['Clínica','Clínica Mar','clinicamar.es','Cuidamos de ti, sin esperas.','Pide cita online cuando mejor te venga.','Pedir cita','#e3f4ff','#08233b','#6b8cff','Manrope'],
-['Tienda','Taller Verde','tallerverde.es','Plantas que alegran tu casa.','Compra online y recíbelas donde quieras.','Ver tienda','#e4f7ec','#0e2a1b','#2fd39a','Syne'],
-['Abogados','Vidal & Co.','vidalco.es','Tus derechos, bien defendidos.','Primera consulta sin compromiso.','Pedir consulta','#ffe9f3','#3a1026','#ff8fc4','Playfair Display'],
-['Estudio','Estudio Norte','estudionorte.es','Espacios que se sienten tuyos.','Mira nuestros proyectos y cuéntanos el tuyo.','Ver proyectos','#ffffff','#111111','#ffc933','Bricolage Grotesque']];
+const mkNav=o=>`<nav class="mk-nav"><span class="mk-logo"><i></i>${o.n}</span><span class="mk-links">${o.l.map(x=>`<span>${x}</span>`).join('')}</span><span class="mk-pill">${o.cta}</span></nav>`;
+const mkHero=(k,h,p,b,g,art='')=>`<div class="mk-hero"><div><span class="mk-k">${k}</span><h4 class="mk-h">${h}</h4><p>${p}</p><div class="mk-row"><span class="mk-btn">${b}</span>${g?`<span class="mk-ghost">${g}</span>`:''}</div></div>${art}</div>`;
+const slots=a=>`<div class="mk-slots">${a.map((t,i)=>`<button type="button" class="mk-slot" aria-pressed="${i===1}">${t}</button>`).join('')}</div>`;
+const cards=(a,dots)=>`<div class="mk-grid3">${a.map((x,i)=>`<div class="mk-card">${dots?`<span class="mk-dot" style="background:${dots[i]}"></span>`:''}<b class="mk-t">${x[0]}</b><p>${x[1]}</p></div>`).join('')}</div>`;
+const plant=(bg,pot,lf)=>`<div class="mk-plant" style="--bg:${bg};--pot:${pot};--lf:${lf}"><i></i><i></i><i></i></div>`;
+const prod=(n,p,a,b,c)=>`<div class="mk-card mk-prod">${plant(a,b,c)}<b class="mk-t">${n}</b><div class="mk-row sp"><b class="mk-pr">${p}</b><button type="button" class="mk-btn" data-add="${n}">Añadir</button></div></div>`;
+/* c = [fondo, texto, acento, superficie, texto del botón] */
+const SEC=[
+['Restaurante',{n:'Casa Lola',u:'casalola.es',f:'Fraunces',l:['Carta','Menú','Reservas'],cta:'Reservar',c:['#fff3d6','#2a1500','#ff5a3c','#fffaf0','#2a1500'],
+ h:()=>mkHero('Cocina casera · Desde 1987','Cocina de casa, mesa para ti.','Producto de temporada, guisos de toda la vida y postres hechos cada mañana.','Reservar mesa','Ver carta','<div class="mk-art plate"><i></i><i></i><i></i><i></i></div>')+
+ `<div class="mk-two"><div class="mk-card"><b class="mk-t">Menú del día</b><ul class="mk-li"><li><span>Crema de calabaza</span><em>1º</em></li><li><span>Rabo de toro al vino</span><em>2º</em></li><li><span>Tarta de queso casera</span><em>Postre</em></li></ul><p class="mk-price">14,50 € <small>pan, bebida y café</small></p></div>
+ <div class="mk-card"><b class="mk-t">Reserva para hoy</b>${slots(['13:30','14:00','14:30','21:00'])}<p>Mesa para <b>2 personas</b>. Te confirmamos al instante.</p></div></div>`}],
+['Clínica',{n:'Clínica Mar',u:'clinicamar.es',f:'Manrope',l:['Servicios','Equipo','Cita online'],cta:'Pedir cita',c:['#e3f4ff','#08233b','#6b8cff','#ffffff','#08233b'],
+ h:()=>mkHero('Centro médico · Abierto hoy hasta las 20:00','Cuidamos de ti, sin esperas.','Medicina general, fisioterapia y pediatría en un mismo lugar. Elige tu hora y listo.','Pedir cita','Ver servicios','<div class="mk-art cal">'+'<i></i>'.repeat(9)+'<i class="a"></i>'+'<i></i>'.repeat(6)+'</div>')+
+ cards([['Medicina general','Revisiones y seguimiento continuo.'],['Fisioterapia','Un plan de recuperación para ti.'],['Pediatría','Cuidado cercano para los pequeños.']],['#6b8cff','#2fd39a','#ffc933'])+
+ `<div class="mk-card"><b class="mk-t">Primeras horas libres hoy</b>${slots(['16:30','17:15','18:00','19:30'])}<p>Sin llamadas ni esperas: recibes la confirmación por correo.</p></div>`}],
+['Tienda',{n:'Taller Verde',u:'tallerverde.es',f:'Syne',l:['Plantas','Macetas','Regalos'],cta:'Carrito (<b id="cart">0</b>)',c:['#e4f7ec','#0e2a1b','#2fd39a','#ffffff','#0e2a1b'],
+ h:()=>mkHero('Envío en 24 h · Garantía 30 días','Plantas que alegran tu casa.','Elegidas a mano, listas para plantar y con guía de cuidados incluida.','Ver tienda','Cómo cuidarlas','<div class="mk-art">'+plant('var(--ma)','#0e2a1b','#1f8a5b')+'</div>')+
+ `<div class="mk-grid3">${prod('Monstera','24 €','#d4f0e0','#e0623a','#1f8a5b')}${prod('Ficus lyrata','32 €','#fde9c9','#111','#2f9e6b')}${prod('Sansevieria','15 €','#e6e2fb','#ffc933','#14664a')}</div>`}],
+['Abogados',{n:'Vidal & Co.',u:'vidalco.es',f:'Playfair Display',l:['Áreas','Despacho','Contacto'],cta:'Pedir consulta',c:['#14213d','#f5efe0','#e0b04c','#1d2d52','#14213d'],
+ h:()=>mkHero('Despacho · Alzira desde 1998','Tus derechos, bien defendidos.','Un equipo cercano que te explica cada paso, sin tecnicismos y sin sorpresas en la factura.','Pedir consulta','Nuestras áreas','<div class="mk-art arch">V&amp;C</div>')+
+ '<div class="mk-grid3 mk-stats"><div><b>25</b><span>años de experiencia</span></div><div><b>1.200+</b><span>casos resueltos</span></div><div><b>1ª</b><span>consulta sin compromiso</span></div></div>'+
+ cards([['Familia','Divorcios, custodia y herencias.'],['Laboral','Despidos, reclamaciones y contratos.'],['Mercantil','Sociedades, autónomos y pymes.']])}],
+['Estudio',{n:'Estudio Norte',u:'estudionorte.es',f:'Bricolage Grotesque',l:['Proyectos','Estudio','Contacto'],cta:'Hablemos',c:['#ffffff','#111111','#ffc933','#f3f3f0','#111111'],
+ h:()=>mkHero('Arquitectura e interiorismo','Espacios que se sienten tuyos.','Diseñamos reformas y proyectos a medida, desde la primera idea hasta la llave en mano.','Ver proyectos','Contacto')+
+ `<div class="mk-tiles">${[['Casa Olivo','Reforma integral','#ffc933'],['Café Norte','Interiorismo','#ff8fc4'],['Loft Mar','Vivienda','#6b8cff'],['Tienda Brisa','Comercio','#2fd39a']].map((t,i)=>`<div class="mk-tile t${i}" style="--tc:${t[2]}"><span>${t[0]}<small>${t[1]}</small></span></div>`).join('')}</div>`}]];
 const mkb=$('#mkb');
 function chips(box,list,fn,sw){list.forEach((it,i)=>{const b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('aria-pressed',i===0);
  if(sw)b.innerHTML=it[1].map(c=>'<s style="background:'+c+'"></s>').join('');
  if(box.id==='cf')b.style.fontFamily="'"+it[1]+"'";b.append(it[0]);
  b.onclick=()=>{$$('.chip',box).forEach(c=>c.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');fn(it)};box.append(b)})}
-chips($('#sec'),SEC,s=>{$('#mn').textContent=s[1];$('#url').textContent=s[2];$('#mh').textContent=s[3];$('#mp').textContent=s[4];$('#mbt').textContent=s[5];
- mkb.style.setProperty('--mb',s[6]);mkb.style.setProperty('--mf',s[7]);mkb.style.setProperty('--ma',s[8]);mkb.style.setProperty('--mn',"'"+s[9]+"'")});
+let cart=0;
+function render(s){const o=s[1];cart=0;$('#url').textContent=o.u;
+ o.c.forEach((v,i)=>mkb.style.setProperty('--'+['mb','mf','ma','ms','mt'][i],v));mkb.style.setProperty('--mn',"'"+o.f+"'");
+ mkb.innerHTML=mkNav(o)+'<div class="mk-main">'+o.h()+'</div>'}
+chips($('#sec'),SEC,render);render(SEC[0]);
+mkb.addEventListener('click',e=>{const a=e.target.closest('[data-add]'),t=e.target.closest('.mk-slot');
+ if(a){$('#cart').textContent=++cart;toast('Añadido al carrito: '+a.dataset.add)}
+ if(t){$$('.mk-slot',t.parentNode).forEach(x=>x.setAttribute('aria-pressed',x===t));toast('Hora elegida: '+t.textContent)}});
+const mv=$('#mv');if(mv)mv.onclick=()=>{const on=mv.getAttribute('aria-pressed')!=='true';mv.setAttribute('aria-pressed',on);$('.fr2').classList.toggle('mv',on)};
 
 /* Panel «Personalizar»: tipografías y colores */
 const FONTS=[['Bricolage + DM Sans','Bricolage Grotesque','DM Sans'],['Fraunces + Inter','Fraunces','Inter'],['Syne + DM Sans','Syne','DM Sans'],['Space Grotesk + Manrope','Space Grotesk','Manrope'],['Playfair + Inter','Playfair Display','Inter'],['Inter + Inter','Inter','Inter']];
@@ -379,6 +450,7 @@ function upd(){dirty=0;const h=innerHeight,s=scrollY;bar.style.transform='scaleX
    const centerLast=lastRect.top+lastRect.height/2;
    const span=centerLast-centerFirst;
    const triggerY=h*0.65;
+   nums.forEach(n=>{const q=n.getBoundingClientRect();n.parentNode.classList.toggle('done',R||q.top+q.height/2<=triggerY)});
    const p=span>0?clamp((triggerY-centerFirst)/span):0;
    tl.style.setProperty('--t',R?1:p.toFixed(3));
  }
